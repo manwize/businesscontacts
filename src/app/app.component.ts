@@ -12,6 +12,9 @@ import {Category} from './Category';
 export class AppComponent implements OnInit {
 	businesses: Business[];
 	categories: Category[];
+	appState: string;
+	activeKey: string;
+
   constructor(private _firebaseService :FirebaseService) {
   }
   ngOnInit(){
@@ -23,5 +26,14 @@ export class AppComponent implements OnInit {
   		.subscribe(categories => {
   			this.categories = categories;
 		});
+
+  }
+  changeState(state, key){
+  	console.log('Changing state to: ' +state);
+  	if(key) {
+  		console.log('Changing key to: ' +key);
+  		this.activeKey = key;
+  	}
+  	this.appState = state;
   }
 }
